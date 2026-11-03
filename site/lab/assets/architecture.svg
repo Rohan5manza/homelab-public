@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 648" role="img" aria-labelledby="title desc">
+<title id="title">Buffy lab — conceptual systems architecture</title>
+<desc id="desc">A public website above three connected homelab domains: RTX AI compute, Docker application services, and observability. Home Assistant uses ESPHome and Z-Wave sensors; an isolated AI demo gateway is planned.</desc>
+<defs>
+<linearGradient id="bg" x2="0" y2="1"><stop stop-color="#071728"/><stop offset="1" stop-color="#030d1a"/></linearGradient>
+<linearGradient id="node" x2="1" y2="1"><stop stop-color="#103247"/><stop offset="1" stop-color="#0a1928"/></linearGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="4"/></filter>
+<pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#2b6175" stroke-width=".6" opacity=".3"/></pattern>
+<style>text{font-family:ui-monospace,Consolas,monospace;fill:#c8f3ff} .micro{font-size:12px;letter-spacing:1.5px;fill:#5bd8eb}.sub{font-size:15px;fill:#9dbdcb}.big{font-weight:bold;font-size:23px;fill:#e1faff}.stroke{stroke:#3dbbd7;stroke-width:1.3;fill:url(#node)} .conn{fill:none;stroke:#52def2;stroke-width:1.5;opacity:.75} .dash{stroke-dasharray:7 7;opacity:.38}.chip{fill:#102f43;stroke:#2b8198;stroke-width:1}</style>
+</defs>
+<rect width="1280" height="648" fill="url(#bg)"/><rect width="1280" height="648" fill="url(#grid)"/>
+<text x="44" y="39" class="micro">SYSTEM OVERVIEW / WORKSTATION + PUBLIC SITE</text><text x="1232" y="39" text-anchor="end" class="micro">BUFFY // V1</text>
+<!-- Public front door -->
+<rect x="62" y="64" width="1156" height="91" rx="4" class="stroke"/><rect x="62" y="64" width="7" height="91" fill="#56e7f7"/><text x="91" y="91" class="micro">PUBLIC FRONT DOOR</text><text x="91" y="123" class="big">Portfolio · Documentation · Interactive demos · Status</text>
+<rect x="980" y="90" width="215" height="42" rx="2" class="chip"/><text x="1087" y="116" text-anchor="middle" class="micro">STATIC WEB HOSTING</text>
+<!-- connectors -->
+<path d="M640 155V194" class="conn"/><path d="M246 206H1033" class="conn"/><path d="M246 206V235M640 206V235M1033 206V235" class="conn"/><circle cx="640" cy="206" r="5" fill="#53dfed"/>
+<!-- three main domains -->
+<rect x="62" y="236" width="354" height="197" rx="4" class="stroke"/><rect x="463" y="236" width="354" height="197" rx="4" class="stroke"/><rect x="864" y="236" width="354" height="197" rx="4" class="stroke"/>
+<text x="86" y="268" class="micro">01 // GPU &amp; MLOPS</text><text x="86" y="302" class="big">AI compute</text><text x="86" y="334" class="sub">RTX 4060 Ti · 16 GB VRAM</text><text x="86" y="357" class="sub">Python · Jupyter · Local inference</text>
+<rect x="86" y="384" width="305" height="31" class="chip"/><text x="102" y="404" font-size="13" fill="#a9e7f7">Experiments · DVC · Prefect · MinIO</text>
+<text x="487" y="268" class="micro">02 // CONTAINER WORKSPACE</text><text x="487" y="302" class="big">Services &amp; data</text><text x="487" y="334" class="sub">Ubuntu · Docker Compose · Dashy</text><text x="487" y="357" class="sub">Development tools · Databases</text>
+<rect x="487" y="384" width="305" height="31" class="chip"/><text x="503" y="404" font-size="13" fill="#a9e7f7">Workspaces · Storage · Automation</text>
+<text x="888" y="268" class="micro">03 // TELEMETRY</text><text x="888" y="302" class="big">Observability</text><text x="888" y="334" class="sub">Prometheus · Grafana · Loki</text><text x="888" y="357" class="sub">Alloy · exporters · health checks</text>
+<rect x="888" y="384" width="305" height="31" class="chip"/><text x="904" y="404" font-size="13" fill="#a9e7f7">Metrics · Logs · Notifications</text>
+<!-- bottom connection lines -->
+<path d="M238 433V469M640 433V469M1041 433V469" class="conn dash"/>
+<!-- lower modules -->
+<rect x="62" y="469" width="555" height="124" rx="4" class="stroke"/><rect x="663" y="469" width="555" height="124" rx="4" class="stroke"/>
+<text x="88" y="501" class="micro">04 // PHYSICAL WORLD</text><text x="88" y="534" class="big">Home Assistant + sensors</text><text x="88" y="562" class="sub">ESP8266 / BME280 → Wi-Fi → Home Assistant → Z-Wave</text><text x="88" y="584" font-size="12" fill="#77bad2">Three room temperatures · automated thermostat setpoints</text>
+<text x="687" y="501" class="micro">05 // VISITOR DEMONSTRATIONS</text><text x="687" y="534" class="big">Interactive interfaces</text><text x="687" y="562" class="sub">Thermostat simulator: available on this website</text><text x="687" y="584" font-size="12" fill="#ffc178">GPU model inference: external demo connection is next</text>
+<text x="64" y="624" font-size="11" fill="#5d94ac">LOGICAL COMPONENTS • PUBLIC WEB EXPERIENCE IS SEPARATE FROM PRIVATE DEVICE CONTROLS</text>
+</svg>

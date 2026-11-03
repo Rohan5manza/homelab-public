@@ -1,0 +1,77 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050b15"><title>GPU / ML platform / Buffy Lab / Documentation</title><link rel="stylesheet" href="../../../assets/styles.css"><link rel="stylesheet" href="../../docs.css"><link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml"></head><body class="docs-body"><header class="docs-top"><a href="../../../index.html" class="docs-brand"><strong>BUFFY</strong> / SYSTEMS LAB</a><span>ENGINEERING NOTEBOOK</span><a class="docs-website-link" href="../../../index.html">← RETURN TO LAB</a></header><div class="docs-layout"><aside class="docs-nav"><div class="nav-overline">THE SYSTEMS / 2026</div><input id="docSearch" type="search" placeholder="Filter chapters..." aria-label="Filter chapters"/><nav id="docLinks" aria-label="Documentation chapters"><a href="../../index.html">Overview</a><a href="../../architecture/index.html">Platform architecture</a><a class="active" href="index.html">GPU / ML platform</a><a href="../../mlops/index.html">MLOps workflow</a><a href="../../services/index.html">Self-hosted apps</a><a href="../thermostat/index.html">Smart thermostat</a><a href="../observability/index.html">Observability</a><a href="../../ai-demo/index.html">AI demo deployment</a><a href="../../security/index.html">Security boundary</a><a href="../../evidence/index.html">Evidence register</a></nav><div class="docs-caution">Explore how the lab is built, with clear boundaries between public demonstrations and private tools.</div></aside><main class="docs-main"><div class="docs-breadcrumb">LAB / DOCUMENTATION / GPU / ML PLATFORM</div><article class="docs-content"><h1>RTX AI &amp; ML research platform</h1>
+<p><strong>Fields:</strong> GPU computing · applied machine learning · MLOps · research tooling</p>
+<h2>The idea</h2>
+<p>My HP Z440 is more than a server for web applications: it's a place to develop, execute, instrument, and repeat machine learning experiments on my own hardware. The GPU is an <strong>NVIDIA RTX 4060 Ti with 16 GB of VRAM</strong>.</p>
+<p>Instead of scattering datasets, outputs and environment notes across notebooks, I designed a reusable experimental workflow that connects local computation with versioning, artifact storage, orchestration and monitoring.</p>
+<h2>Components and responsibilities</h2>
+<table>
+<thead>
+<tr>
+  <th>Component</th>
+  <th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Ubuntu + NVIDIA GPU</td>
+  <td>Local compute and acceleration</td>
+</tr>
+<tr>
+  <td>Python + JupyterLab</td>
+  <td>Prototyping and experimental code</td>
+</tr>
+<tr>
+  <td>Docker Compose</td>
+  <td>Repeatable supporting services</td>
+</tr>
+<tr>
+  <td>DVC</td>
+  <td>Track datasets and experiment inputs</td>
+</tr>
+<tr>
+  <td>MinIO</td>
+  <td>Store generated datasets, checkpoints, and experiment artifacts</td>
+</tr>
+<tr>
+  <td>Prefect</td>
+  <td>Organize experiment tasks and dependencies</td>
+</tr>
+<tr>
+  <td>Custom Python SDK</td>
+  <td>Consistent experiment logging and instrumentation</td>
+</tr>
+<tr>
+  <td>Prometheus + Grafana + Loki</td>
+  <td>Observe system load, application behavior, and logs</td>
+</tr>
+</tbody>
+</table>
+<p>The components above describe the research stack and its intended roles. They are not claims that a particular experiment achieved a specific speed, accuracy or uptime.</p>
+<h2>Example experimental flow</h2>
+<pre><code class="language-text">Dataset / DVC revision
+       ↓
+Experiment config + Python environment
+       ↓
+Prefect task flow → RTX / CUDA workload
+       ↓
+Metrics, logs and model artifacts
+       ↓
+MinIO storage + experiment notes
+       ↓
+Review performance, change one variable, repeat
+</code></pre>
+<h2>What I want an experiment to answer</h2>
+<ul>
+<li>Which model and dataset revision produced the result?</li>
+<li>What exact code and configuration did it run with?</li>
+<li>How long did execution and inference take?</li>
+<li>How much GPU memory and CPU capacity did the job require?</li>
+<li>Where are the artifacts, logs and evaluation results?</li>
+</ul>
+<p>Keeping these answers together makes small experiments more valuable and easier to reproduce.</p>
+<h2>Local inference and the public demo</h2>
+<p>I am preparing an isolated <a href="../../ai-demo/index.html">RTX inference playground</a> so visitors can explore a local model through a simple UI. The model-serving application is separate from the internal MLOps stack and the workstation's administration tools.</p>
+<h2>What comes next</h2>
+<p>Publish a complete reproducible run with its dataset revision, task graph, artifact manifest and <strong>measured</strong> latency/throughput. Until that evidence is published, the site intentionally avoids presenting benchmark numbers as achieved results.</p>
+<p>See also: <a href="../../mlops/index.html">MLOps workflow</a> and <a href="../../architecture/index.html">architecture</a>.</p>
+</article><div class="docs-end">END OF DOCUMENT / BUFFY ENGINEERING LAB</div></main><aside class="docs-aside"><span>RESEARCH NOTES</span><p>Build → measure → document → repeat.</p><div class="docs-aside-box">STATUS<br><b>ONGOING WORK</b></div><a href="../../evidence/index.html">EXPLORE RESULTS &amp; EVIDENCE ↗</a></aside></div><script>const s=document.querySelector('#docSearch');s.addEventListener('input',()=>{const t=s.value.toLowerCase();document.querySelectorAll('#docLinks a').forEach(a=>a.hidden=!a.textContent.toLowerCase().includes(t));})</script></body></html>

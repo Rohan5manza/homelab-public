@@ -1,0 +1,8 @@
+{
+  "allowed_domain": "rohanmarar.com",
+  "checks": [
+    {"name": "Public lab website", "enabled": false, "url": ""},
+    {"name": "Documentation", "enabled": false, "url": ""},
+    {"name": "RTX inference demo", "enabled": false, "url": ""}
+  ]
+}

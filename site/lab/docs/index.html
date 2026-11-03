@@ -1,0 +1,64 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050b15"><title>Overview / Buffy Lab / Documentation</title><link rel="stylesheet" href="../assets/styles.css"><link rel="stylesheet" href="docs.css"><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"></head><body class="docs-body"><header class="docs-top"><a href="../index.html" class="docs-brand"><strong>BUFFY</strong> / SYSTEMS LAB</a><span>ENGINEERING NOTEBOOK</span><a class="docs-website-link" href="../index.html">← RETURN TO LAB</a></header><div class="docs-layout"><aside class="docs-nav"><div class="nav-overline">THE SYSTEMS / 2026</div><input id="docSearch" type="search" placeholder="Filter chapters..." aria-label="Filter chapters"/><nav id="docLinks" aria-label="Documentation chapters"><a class="active" href="index.html">Overview</a><a href="architecture/index.html">Platform architecture</a><a href="projects/ml-platform/index.html">GPU / ML platform</a><a href="mlops/index.html">MLOps workflow</a><a href="services/index.html">Self-hosted apps</a><a href="projects/thermostat/index.html">Smart thermostat</a><a href="projects/observability/index.html">Observability</a><a href="ai-demo/index.html">AI demo deployment</a><a href="security/index.html">Security boundary</a><a href="evidence/index.html">Evidence register</a></nav><div class="docs-caution">Explore how the lab is built, with clear boundaries between public demonstrations and private tools.</div></aside><main class="docs-main"><div class="docs-breadcrumb">LAB / DOCUMENTATION / OVERVIEW</div><article class="docs-content"><h1>Welcome to Buffy's engineering notebook</h1>
+<p><strong>Buffy</strong> is my self-hosted Linux workstation and the center of my personal engineering lab. I use it to learn how real systems behave by building, maintaining, and connecting them—from local AI experiments to room-aware home automation.</p>
+<p>The hardware is an <strong>HP Z440 workstation with an NVIDIA RTX 4060 Ti (16 GB)</strong> running Ubuntu. The real value lies in the software ecosystem and the experiments it supports.</p>
+<h2>Find your way around</h2>
+<table>
+<thead>
+<tr>
+  <th>Explore</th>
+  <th>You'll find</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><a href="architecture/index.html">Architecture</a></td>
+  <td>How the workstation, containers, monitoring, and physical devices relate</td>
+</tr>
+<tr>
+  <td><a href="projects/ml-platform/index.html">AI &amp; ML research platform</a></td>
+  <td>Local GPU workloads, experiment workflows, and MLOps components</td>
+</tr>
+<tr>
+  <td><a href="mlops/index.html">MLOps workflow</a></td>
+  <td>Dataset versioning, orchestration, artifacts, and experimental evidence</td>
+</tr>
+<tr>
+  <td><a href="projects/thermostat/index.html">Smart thermostat</a></td>
+  <td>A complete build story: wireless sensors, Home Assistant, Z-Wave and decision logic</td>
+</tr>
+<tr>
+  <td><a href="projects/observability/index.html">Observability platform</a></td>
+  <td>Measuring the behavior of containers and the Linux host</td>
+</tr>
+<tr>
+  <td><a href="services/index.html">Self-hosted applications</a></td>
+  <td>How the software ecosystem is organized</td>
+</tr>
+<tr>
+  <td><a href="ai-demo/index.html">RTX demo</a></td>
+  <td>How a local model can power an independent public demonstration</td>
+</tr>
+<tr>
+  <td><a href="security/index.html">Access &amp; reliability</a></td>
+  <td>The boundaries between a public showcase and private infrastructure</td>
+</tr>
+<tr>
+  <td><a href="evidence/index.html">Engineering evidence</a></td>
+  <td>Project artifacts and measurements that make the work reproducible</td>
+</tr>
+</tbody>
+</table>
+<h2>Why a homelab?</h2>
+<p>Because there is a difference between reading about a system and running one. A homelab gives me somewhere to deploy software, examine its behavior, make mistakes, and improve it without relying entirely on managed services.</p>
+<p>My projects fall into four areas:</p>
+<ol>
+<li><strong>GPU experiments and applied AI:</strong> local models, vision tasks, notebooks and supporting research tools.</li>
+<li><strong>Self-hosted infrastructure:</strong> Docker Compose services, databases, storage and development workspaces.</li>
+<li><strong>Observability:</strong> system metrics, logs, alerts, uptime checks and troubleshooting.</li>
+<li><strong>Intelligent automation:</strong> ESP8266 environmental sensors, Home Assistant and a Z-Wave thermostat.</li>
+</ol>
+<h2>Try an experiment</h2>
+<p>The <a href="../index.html#control-lab">thermostat explorer</a> works directly in the browser. It illustrates the weighted-temperature controller described in <a href="https://rohanmarar.substack.com/p/the-thermostat-wars-revenge-of-the">my published build story</a>.</p>
+<p>The <a href="../demos/index.html">RTX AI playground</a> is the next live connection: the application code is prepared, and public inference will become available when the GPU gateway has been configured and tested.</p>
+<p>This site grows as the homelab grows. I share the reasoning, implementation, and limitations rather than simply listing installed software.</p>
+</article><div class="docs-end">END OF DOCUMENT / BUFFY ENGINEERING LAB</div></main><aside class="docs-aside"><span>RESEARCH NOTES</span><p>Build → measure → document → repeat.</p><div class="docs-aside-box">STATUS<br><b>ONGOING WORK</b></div><a href="evidence/index.html">EXPLORE RESULTS &amp; EVIDENCE ↗</a></aside></div><script>const s=document.querySelector('#docSearch');s.addEventListener('input',()=>{const t=s.value.toLowerCase();document.querySelectorAll('#docLinks a').forEach(a=>a.hidden=!a.textContent.toLowerCase().includes(t));})</script></body></html>

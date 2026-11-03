@@ -1,0 +1,65 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050b15"><title>Observability / Buffy Lab / Documentation</title><link rel="stylesheet" href="../../../assets/styles.css"><link rel="stylesheet" href="../../docs.css"><link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml"></head><body class="docs-body"><header class="docs-top"><a href="../../../index.html" class="docs-brand"><strong>BUFFY</strong> / SYSTEMS LAB</a><span>ENGINEERING NOTEBOOK</span><a class="docs-website-link" href="../../../index.html">← RETURN TO LAB</a></header><div class="docs-layout"><aside class="docs-nav"><div class="nav-overline">THE SYSTEMS / 2026</div><input id="docSearch" type="search" placeholder="Filter chapters..." aria-label="Filter chapters"/><nav id="docLinks" aria-label="Documentation chapters"><a href="../../index.html">Overview</a><a href="../../architecture/index.html">Platform architecture</a><a href="../ml-platform/index.html">GPU / ML platform</a><a href="../../mlops/index.html">MLOps workflow</a><a href="../../services/index.html">Self-hosted apps</a><a href="../thermostat/index.html">Smart thermostat</a><a class="active" href="index.html">Observability</a><a href="../../ai-demo/index.html">AI demo deployment</a><a href="../../security/index.html">Security boundary</a><a href="../../evidence/index.html">Evidence register</a></nav><div class="docs-caution">Explore how the lab is built, with clear boundaries between public demonstrations and private tools.</div></aside><main class="docs-main"><div class="docs-breadcrumb">LAB / DOCUMENTATION / OBSERVABILITY</div><article class="docs-content"><h1>Observability &amp; infrastructure operations</h1>
+<p><strong>Fields:</strong> Linux systems · containers · monitoring · incident response</p>
+<p>My homelab runs multiple applications with different resource needs. Observability helps me tell the difference between a service that is healthy, one that is slow, and one that has silently failed.</p>
+<h2>The monitoring stack</h2>
+<table>
+<thead>
+<tr>
+  <th>Service</th>
+  <th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Prometheus</td>
+  <td>Collect and query time-series metrics</td>
+</tr>
+<tr>
+  <td>Grafana</td>
+  <td>Display system and application metrics in dashboards</td>
+</tr>
+<tr>
+  <td>Loki</td>
+  <td>Store and query application logs</td>
+</tr>
+<tr>
+  <td>Alloy</td>
+  <td>Collect and forward telemetry</td>
+</tr>
+<tr>
+  <td>Node Exporter</td>
+  <td>Measure Linux host behavior</td>
+</tr>
+<tr>
+  <td>cAdvisor</td>
+  <td>Expose container resource metrics</td>
+</tr>
+<tr>
+  <td>Beszel</td>
+  <td>Lightweight host and resource monitoring</td>
+</tr>
+<tr>
+  <td>Dozzle</td>
+  <td>Inspect container logs during troubleshooting</td>
+</tr>
+<tr>
+  <td>Uptime Kuma</td>
+  <td>Track application availability</td>
+</tr>
+<tr>
+  <td>ntfy</td>
+  <td>Receive alerts and automation notifications</td>
+</tr>
+</tbody>
+</table>
+<h2>How I use observability</h2>
+<p><strong>Host:</strong> CPU utilization, memory pressure, disk usage and uptime trends.</p>
+<p><strong>Containers:</strong> Resource use, restarts and whether an application is responding as expected.</p>
+<p><strong>Applications:</strong> Logs and errors that explain why something is failing.</p>
+<p><strong>Automation:</strong> Notifications for events that need attention, instead of constant manual dashboard checking.</p>
+<h2>An example investigation</h2>
+<p>When a self-hosted tool becomes slow, I can begin with host resource usage, identify the affected container, inspect its logs, and compare changes with recent restarts or deployments. These tools are more valuable together than individually: metrics show <em>what changed</em>, logs help explain <em>why</em>.</p>
+<h2>What visitors can see</h2>
+<p>The <a href="../../../status/index.html">public status page</a> will show availability checks for selected public-facing experiences once they are enabled. It is separate from the internal Grafana dashboards and container administration tools.</p>
+<p>The next improvement is to publish a dated incident case study with a reproduced fault, timeline, root cause and recovery result—not a claimed uptime percentage without supporting measurements.</p>
+</article><div class="docs-end">END OF DOCUMENT / BUFFY ENGINEERING LAB</div></main><aside class="docs-aside"><span>RESEARCH NOTES</span><p>Build → measure → document → repeat.</p><div class="docs-aside-box">STATUS<br><b>ONGOING WORK</b></div><a href="../../evidence/index.html">EXPLORE RESULTS &amp; EVIDENCE ↗</a></aside></div><script>const s=document.querySelector('#docSearch');s.addEventListener('input',()=>{const t=s.value.toLowerCase();document.querySelectorAll('#docLinks a').forEach(a=>a.hidden=!a.textContent.toLowerCase().includes(t));})</script></body></html>

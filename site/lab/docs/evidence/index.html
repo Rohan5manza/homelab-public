@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050b15"><title>Evidence register / Buffy Lab / Documentation</title><link rel="stylesheet" href="../../assets/styles.css"><link rel="stylesheet" href="../docs.css"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"></head><body class="docs-body"><header class="docs-top"><a href="../../index.html" class="docs-brand"><strong>BUFFY</strong> / SYSTEMS LAB</a><span>ENGINEERING NOTEBOOK</span><a class="docs-website-link" href="../../index.html">← RETURN TO LAB</a></header><div class="docs-layout"><aside class="docs-nav"><div class="nav-overline">THE SYSTEMS / 2026</div><input id="docSearch" type="search" placeholder="Filter chapters..." aria-label="Filter chapters"/><nav id="docLinks" aria-label="Documentation chapters"><a href="../index.html">Overview</a><a href="../architecture/index.html">Platform architecture</a><a href="../projects/ml-platform/index.html">GPU / ML platform</a><a href="../mlops/index.html">MLOps workflow</a><a href="../services/index.html">Self-hosted apps</a><a href="../projects/thermostat/index.html">Smart thermostat</a><a href="../projects/observability/index.html">Observability</a><a href="../ai-demo/index.html">AI demo deployment</a><a href="../security/index.html">Security boundary</a><a class="active" href="index.html">Evidence register</a></nav><div class="docs-caution">Explore how the lab is built, with clear boundaries between public demonstrations and private tools.</div></aside><main class="docs-main"><div class="docs-breadcrumb">LAB / DOCUMENTATION / EVIDENCE REGISTER</div><article class="docs-content"><h1>Engineering evidence &amp; results</h1>
+<p>I want this lab to be more than a visually interesting collection of dashboards. A useful engineering portfolio shows <strong>how a system was designed</strong>, <strong>what was actually built</strong>, and <strong>what happened when it was tested</strong>.</p>
+<h2>Existing work and direct evidence</h2>
+<table>
+<thead>
+<tr>
+  <th>Area</th>
+  <th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Thermostat</td>
+  <td><a href="https://rohanmarar.substack.com/p/the-thermostat-wars-revenge-of-the">Complete public build article</a>, published October 22, 2026, documenting the hardware, control algorithm and successful integration.</td>
+</tr>
+<tr>
+  <td>Service organization</td>
+  <td><a href="../../index.html#architecture">Screenshot of Buffy's private dashboard</a>, plus the <a href="../../index.html#stack">searchable software inventory</a>.</td>
+</tr>
+<tr>
+  <td>AI research platform</td>
+  <td><a href="../projects/ml-platform/index.html">Platform documentation</a> and the described MLOps toolchain; experiment-level measurements are the next step.</td>
+</tr>
+<tr>
+  <td>Observability</td>
+  <td><a href="../projects/observability/index.html">Monitoring architecture</a> and the service inventory; a dated incident walkthrough is planned.</td>
+</tr>
+</tbody>
+</table>
+<h2>What I intend to publish next</h2>
+<ul>
+<li>An <strong>RTX experiment</strong> with model revision, input, GPU memory use and measured inference latency.</li>
+<li>A <strong>reproducible ML workflow</strong> with DVC revision, Prefect run steps, MinIO artifacts and logged outputs.</li>
+<li>A <strong>monitoring case study</strong> describing one actual service failure, investigation and recovery.</li>
+<li>A <strong>thermostat follow-up</strong> with longer-duration room-temperature trends and control outcomes.</li>
+<li>A working <strong>public inference interface</strong>, isolated from internal management services.</li>
+</ul>
+<p>Measured results will include a date and test setup so others can interpret them. I don't use estimated results as benchmark evidence.</p>
+<h2>Links</h2>
+<p>Start with the <a href="../../index.html">homelab overview</a>, <a href="../projects/thermostat/index.html">thermostat story</a>, or <a href="../mlops/index.html">MLOps workflow</a>.</p>
+</article><div class="docs-end">END OF DOCUMENT / BUFFY ENGINEERING LAB</div></main><aside class="docs-aside"><span>RESEARCH NOTES</span><p>Build → measure → document → repeat.</p><div class="docs-aside-box">STATUS<br><b>ONGOING WORK</b></div><a href="index.html">EXPLORE RESULTS &amp; EVIDENCE ↗</a></aside></div><script>const s=document.querySelector('#docSearch');s.addEventListener('input',()=>{const t=s.value.toLowerCase();document.querySelectorAll('#docLinks a').forEach(a=>a.hidden=!a.textContent.toLowerCase().includes(t));})</script></body></html>

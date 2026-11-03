@@ -1,0 +1,15 @@
+{
+  "measured_at_utc": null,
+  "host": "HP Z440",
+  "gpu": "NVIDIA RTX 4060 Ti 16GB",
+  "driver_version": null,
+  "inference_runtime_version": null,
+  "model": null,
+  "quantization": null,
+  "input_tokens": null,
+  "output_tokens": null,
+  "wall_time_seconds": null,
+  "throughput_generated_tokens_per_second": null,
+  "peak_vram_gib": null,
+  "notes": "Template only. No metrics measured or claimed."
+}

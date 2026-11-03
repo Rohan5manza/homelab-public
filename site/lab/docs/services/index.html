@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050b15"><title>Self-hosted apps / Buffy Lab / Documentation</title><link rel="stylesheet" href="../../assets/styles.css"><link rel="stylesheet" href="../docs.css"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"></head><body class="docs-body"><header class="docs-top"><a href="../../index.html" class="docs-brand"><strong>BUFFY</strong> / SYSTEMS LAB</a><span>ENGINEERING NOTEBOOK</span><a class="docs-website-link" href="../../index.html">← RETURN TO LAB</a></header><div class="docs-layout"><aside class="docs-nav"><div class="nav-overline">THE SYSTEMS / 2026</div><input id="docSearch" type="search" placeholder="Filter chapters..." aria-label="Filter chapters"/><nav id="docLinks" aria-label="Documentation chapters"><a href="../index.html">Overview</a><a href="../architecture/index.html">Platform architecture</a><a href="../projects/ml-platform/index.html">GPU / ML platform</a><a href="../mlops/index.html">MLOps workflow</a><a class="active" href="index.html">Self-hosted apps</a><a href="../projects/thermostat/index.html">Smart thermostat</a><a href="../projects/observability/index.html">Observability</a><a href="../ai-demo/index.html">AI demo deployment</a><a href="../security/index.html">Security boundary</a><a href="../evidence/index.html">Evidence register</a></nav><div class="docs-caution">Explore how the lab is built, with clear boundaries between public demonstrations and private tools.</div></aside><main class="docs-main"><div class="docs-breadcrumb">LAB / DOCUMENTATION / SELF-HOSTED APPS</div><article class="docs-content"><h1>The self-hosted application ecosystem</h1>
+<p>The lab started with trying out Linux servers, virtual machines and Proxmox. It evolved into a practical Ubuntu workstation running a large collection of services under Docker Compose.</p>
+<h2>Core infrastructure</h2>
+<ul>
+<li><strong>Dashy</strong>: a single private home page for opening the tools I use.</li>
+<li><strong>Portainer</strong>: management of Docker containers, Compose stacks and service lifecycle.</li>
+<li><strong>Cloudflare Tunnel and Tailscale</strong>: different ways to reach selected applications and devices securely when away from the workstation.</li>
+<li><strong>Code Server and JupyterLab</strong>: coding and experimentation without a conventional desktop session on the host.</li>
+</ul>
+<h2>Data and development</h2>
+<ul>
+<li><strong>PostgreSQL, MariaDB and Valkey</strong> for application storage and cache/queue use cases.</li>
+<li><strong>pgAdmin, phpMyAdmin, Adminer and DBGate</strong> as database-management interfaces.</li>
+<li><strong>Paperless-ngx, Paperless-GPT, Apache Tika and Gotenberg</strong> for document management and conversion.</li>
+<li><strong>Buffy Workbench</strong> for AI experiments and research artifacts.</li>
+</ul>
+<h2>Observability and reliability</h2>
+<p>Prometheus, Grafana, Loki, Alloy, exporters, Beszel, Dozzle, Uptime Kuma and ntfy provide a path from resource metrics to logs and alerts. See the <a href="../projects/observability/index.html">observability case study</a>.</p>
+<h2>Home automation</h2>
+<p>Home Assistant and ESPHome connect a multi-room sensor network with the Z-Wave thermostat. See the <a href="../projects/thermostat/index.html">thermostat project</a> for the actual implementation.</p>
+<h2>AI research</h2>
+<p>The GPU workstation is also my experimental platform for Python and computer vision workloads, model inference and reproducible MLOps workflows. See <a href="../projects/ml-platform/index.html">GPU research platform</a> and <a href="../mlops/index.html">MLOps workflow</a>.</p>
+<p>You can explore the full searchable inventory on the <a href="../../index.html#stack">home page</a>. These are tools in my working environment, not accounts or admin consoles offered for public login.</p>
+</article><div class="docs-end">END OF DOCUMENT / BUFFY ENGINEERING LAB</div></main><aside class="docs-aside"><span>RESEARCH NOTES</span><p>Build → measure → document → repeat.</p><div class="docs-aside-box">STATUS<br><b>ONGOING WORK</b></div><a href="../evidence/index.html">EXPLORE RESULTS &amp; EVIDENCE ↗</a></aside></div><script>const s=document.querySelector('#docSearch');s.addEventListener('input',()=>{const t=s.value.toLowerCase();document.querySelectorAll('#docLinks a').forEach(a=>a.hidden=!a.textContent.toLowerCase().includes(t));})</script></body></html>

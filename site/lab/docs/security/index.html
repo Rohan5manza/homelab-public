@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050b15"><title>Security boundary / Buffy Lab / Documentation</title><link rel="stylesheet" href="../../assets/styles.css"><link rel="stylesheet" href="../docs.css"><link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml"></head><body class="docs-body"><header class="docs-top"><a href="../../index.html" class="docs-brand"><strong>BUFFY</strong> / SYSTEMS LAB</a><span>ENGINEERING NOTEBOOK</span><a class="docs-website-link" href="../../index.html">← RETURN TO LAB</a></header><div class="docs-layout"><aside class="docs-nav"><div class="nav-overline">THE SYSTEMS / 2026</div><input id="docSearch" type="search" placeholder="Filter chapters..." aria-label="Filter chapters"/><nav id="docLinks" aria-label="Documentation chapters"><a href="../index.html">Overview</a><a href="../architecture/index.html">Platform architecture</a><a href="../projects/ml-platform/index.html">GPU / ML platform</a><a href="../mlops/index.html">MLOps workflow</a><a href="../services/index.html">Self-hosted apps</a><a href="../projects/thermostat/index.html">Smart thermostat</a><a href="../projects/observability/index.html">Observability</a><a href="../ai-demo/index.html">AI demo deployment</a><a class="active" href="index.html">Security boundary</a><a href="../evidence/index.html">Evidence register</a></nav><div class="docs-caution">Explore how the lab is built, with clear boundaries between public demonstrations and private tools.</div></aside><main class="docs-main"><div class="docs-breadcrumb">LAB / DOCUMENTATION / SECURITY BOUNDARY</div><article class="docs-content"><h1>Access, boundaries &amp; reliability</h1>
+<p>A self-hosted lab can publish useful demonstrations without opening the door to everything running on the same computer.</p>
+<h2>Three kinds of access</h2>
+<table>
+<thead>
+<tr>
+  <th>Layer</th>
+  <th>Visitor experience</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>Public website</strong></td>
+  <td>Read project pages, browse documentation, use browser-based simulations.</td>
+</tr>
+<tr>
+  <td><strong>Dedicated demos</strong></td>
+  <td>Interact with explicitly published applications through controlled entry points.</td>
+</tr>
+<tr>
+  <td><strong>Private administration</strong></td>
+  <td>Maintain containers, databases, home controls, device settings, and development environments.</td>
+</tr>
+</tbody>
+</table>
+<h2>Design decisions</h2>
+<ul>
+<li>Host the public website as static content where possible.</li>
+<li>Keep private service management separate from the public site.</li>
+<li>Put published compute-heavy demos behind a restricted application layer with protective limits.</li>
+<li>Treat credentials, access rules, and recovery settings as part of normal infrastructure maintenance.</li>
+<li>Keep the thermostat capable of standard independent operation if the automation host is unavailable.</li>
+</ul>
+<h2>Reliability is more than uptime</h2>
+<p>A working homelab should be observable and recoverable. My priorities are persistent application data, clear service dependencies, useful alerts, backups and a repeatable recovery process.</p>
+<p>The <a href="../../status/index.html">status page</a> reports only checks configured for visitor-facing services; it does not try to represent the operational condition of every container on Buffy.</p>
+<h2>Next engineering improvements</h2>
+<p>Document actual backup restores, record controlled incident simulations and measure recovery time. A tested recovery procedure is stronger evidence than a checklist that has never been exercised.</p>
+</article><div class="docs-end">END OF DOCUMENT / BUFFY ENGINEERING LAB</div></main><aside class="docs-aside"><span>RESEARCH NOTES</span><p>Build → measure → document → repeat.</p><div class="docs-aside-box">STATUS<br><b>ONGOING WORK</b></div><a href="../evidence/index.html">EXPLORE RESULTS &amp; EVIDENCE ↗</a></aside></div><script>const s=document.querySelector('#docSearch');s.addEventListener('input',()=>{const t=s.value.toLowerCase();document.querySelectorAll('#docLinks a').forEach(a=>a.hidden=!a.textContent.toLowerCase().includes(t));})</script></body></html>

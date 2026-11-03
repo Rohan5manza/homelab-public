@@ -1,0 +1,23 @@
+{
+  "generated_at": "2026-11-03T06:49:15Z",
+  "checks": [
+    {
+      "name": "Public lab website",
+      "enabled": false,
+      "state": "not_configured",
+      "checked_at": null
+    },
+    {
+      "name": "Documentation",
+      "enabled": false,
+      "state": "not_configured",
+      "checked_at": null
+    },
+    {
+      "name": "RTX inference demo",
+      "enabled": false,
+      "state": "not_configured",
+      "checked_at": null
+    }
+  ]
+}

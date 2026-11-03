@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#050b15"><title>Smart thermostat / Buffy Lab / Documentation</title><link rel="stylesheet" href="../../../assets/styles.css"><link rel="stylesheet" href="../../docs.css"><link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml"></head><body class="docs-body"><header class="docs-top"><a href="../../../index.html" class="docs-brand"><strong>BUFFY</strong> / SYSTEMS LAB</a><span>ENGINEERING NOTEBOOK</span><a class="docs-website-link" href="../../../index.html">← RETURN TO LAB</a></header><div class="docs-layout"><aside class="docs-nav"><div class="nav-overline">THE SYSTEMS / 2026</div><input id="docSearch" type="search" placeholder="Filter chapters..." aria-label="Filter chapters"/><nav id="docLinks" aria-label="Documentation chapters"><a href="../../index.html">Overview</a><a href="../../architecture/index.html">Platform architecture</a><a href="../ml-platform/index.html">GPU / ML platform</a><a href="../../mlops/index.html">MLOps workflow</a><a href="../../services/index.html">Self-hosted apps</a><a class="active" href="index.html">Smart thermostat</a><a href="../observability/index.html">Observability</a><a href="../../ai-demo/index.html">AI demo deployment</a><a href="../../security/index.html">Security boundary</a><a href="../../evidence/index.html">Evidence register</a></nav><div class="docs-caution">Explore how the lab is built, with clear boundaries between public demonstrations and private tools.</div></aside><main class="docs-main"><div class="docs-breadcrumb">LAB / DOCUMENTATION / SMART THERMOSTAT</div><article class="docs-content"><h1>The Thermostat Wars: a room-aware heating controller</h1>
+<p><strong>Field:</strong> Embedded systems · local IoT · home automation · feedback control</p>
+<p><strong>Original article:</strong> <a href="https://rohanmarar.substack.com/p/the-thermostat-wars-revenge-of-the">The Thermostat Wars: Revenge of the Engineer</a>, published October 22, 2026. This page is a technical summary of that complete first-person build story.</p>
+<h2>The problem: one thermostat, very different rooms</h2>
+<p>My house had uneven heating. The living-room thermostat could only measure its immediate surroundings, while one bedroom became excessively hot and another stayed relatively cold.</p>
+<p>I wanted the heating system to consider room-level measurements—not just the temperature near a single thermostat—without making the house dependent on experimental software for basic furnace operation.</p>
+<h2>What I built</h2>
+<ul>
+<li><strong>Honeywell T6 Pro Z-Wave thermostat</strong> installed on an existing two-wire R/W heating circuit.</li>
+<li><strong>Zooz 800 Series Z-Wave USB controller</strong> connected to my Ubuntu workstation, with <strong>Z-Wave JS UI</strong> bridging the thermostat to Home Assistant.</li>
+<li><strong>Two DIY sensing nodes</strong>, each combining an <strong>ESP8266 D1 Mini</strong> and a <strong>BME280</strong> temperature/humidity/pressure sensor.</li>
+<li><strong>ESPHome</strong>, hosted on Buffy, for firmware, sensor reporting and integration with Home Assistant over Wi-Fi.</li>
+<li><strong>Home Assistant</strong>, also running on Buffy, to calculate a weighted room temperature and send thermostat setpoint requests.</li>
+</ul>
+<p>There are <strong>three temperature inputs</strong>: living room (from the Honeywell itself), my bedroom, and my roommate's bedroom.</p>
+<h2>The engineering chain</h2>
+<pre><code class="language-text">Bedroom #1: BME280 → ESP8266 ── Wi-Fi / ESPHome ──┐
+Bedroom #2: BME280 → ESP8266 ── Wi-Fi / ESPHome ──┤
+                                                   ├→ Home Assistant
+Living room: Honeywell T6 Pro ── Z-Wave JS UI ──────┘
+                                                       │
+                                                       ↓
+                                                Weighted temperature
+                                                + threshold rules
+                                                       │
+                                                       ↓
+                                            Thermostat setpoint request
+                                                       │
+                                                       ↓
+                                             Honeywell's own HVAC control
+</code></pre>
+<h2>Debugging the physical sensors</h2>
+<p>My early assemblies connected to Wi-Fi but failed to detect their BME280 sensors. ESPHome logs reported <code>BME280: Communication failed</code>; the I²C scanner initially found no devices. After replacing unreliable pin connections with proper soldered wiring, the scanner discovered the BME280 at address <code>0x76</code> and sensor readings appeared.</p>
+<p>That failure taught me to debug hardware and software separately: working firmware and Wi-Fi do not guarantee a reliable electrical connection.</p>
+<h2>The actual weighted-temperature design</h2>
+<p>I used the following weights:</p>
+<table>
+<thead>
+<tr>
+  <th>Room</th>
+  <th style="text-align:right">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Living room</td>
+  <td style="text-align:right"><strong>20%</strong></td>
+</tr>
+<tr>
+  <td>My bedroom</td>
+  <td style="text-align:right"><strong>40%</strong></td>
+</tr>
+<tr>
+  <td>Roommate's bedroom</td>
+  <td style="text-align:right"><strong>40%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The calculation is:</p>
+<p><code>T_weighted = 0.20 × T_living + 0.40 × T_bedroom + 0.40 × T_roommate</code></p>
+<p>For <strong>69°F</strong>, <strong>71°F</strong> and <strong>65°F</strong>, respectively, this produces <strong>68.2°F</strong>. All inputs are converted to consistent units before the calculation.</p>
+<h2>Heating decisions, hysteresis and boundaries</h2>
+<p>The starting target was <strong>69°F</strong> with a lower threshold of <strong>68.5°F</strong> and an upper threshold of <strong>69.5°F</strong>.</p>
+<ul>
+<li>Below the lower threshold, the automation can request a higher setpoint.</li>
+<li>Above the upper threshold, it requests the lower setpoint.</li>
+<li>Within the band, it generally leaves the requested setpoint unchanged.</li>
+<li><strong>If my bedroom reaches 72°F</strong>, a higher-priority rule asks the system to reduce heating even when the weighted temperature is low.</li>
+<li>Requested setpoints in the initial design were bounded to <strong>68–72°F</strong>.</li>
+<li>The supervisory automation evaluates conditions approximately <strong>every ten minutes</strong>; this is not a guaranteed minimum furnace runtime.</li>
+</ul>
+<p>The command is sent through Home Assistant's <code>climate.set_temperature</code> action, which changes the Honeywell thermostat's target. <strong>The Honeywell still decides when to call for heat.</strong> Lowering its target does not guarantee that the furnace instantly stops in every room.</p>
+<h2>What happens if something fails?</h2>
+<p>The thermostat retains standalone operation without Buffy or Home Assistant. Home Assistant validates sensor values and, when running but given invalid measurements, can request a <strong>68°F fallback setpoint</strong>. This cannot substitute for a hardware safety system or guarantee that a thermostat will reset itself when the server goes offline.</p>
+<h2>The completed result</h2>
+<p>The sensors, ESPHome, Z-Wave integration, weighted calculation and setpoint automation worked together. I confirmed commands through Home Assistant automation traces and the thermostat's reported state. This is a functioning <strong>end-to-end integration</strong>, not a claim of independently controlled HVAC zones or measured comfort improvements.</p>
+<p><strong>Try it:</strong> <a href="../../../index.html#control-lab">Interactive thermostat controller</a> — change the room temperatures and inspect the resulting example decision.</p>
+<p><strong>Read the full story:</strong> <a href="https://rohanmarar.substack.com/p/the-thermostat-wars-revenge-of-the">The Thermostat Wars: Revenge of the Engineer</a> includes the complete process, soldering failures, system setup and reflections.</p>
+</article><div class="docs-end">END OF DOCUMENT / BUFFY ENGINEERING LAB</div></main><aside class="docs-aside"><span>RESEARCH NOTES</span><p>Build → measure → document → repeat.</p><div class="docs-aside-box">STATUS<br><b>ONGOING WORK</b></div><a href="../../evidence/index.html">EXPLORE RESULTS &amp; EVIDENCE ↗</a></aside></div><script>const s=document.querySelector('#docSearch');s.addEventListener('input',()=>{const t=s.value.toLowerCase();document.querySelectorAll('#docLinks a').forEach(a=>a.hidden=!a.textContent.toLowerCase().includes(t));})</script></body></html>
